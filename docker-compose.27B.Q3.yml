@@ -24,7 +24,7 @@ services:
       -ctk q8_0 -ctv q8_0 
       -np 1
       -fa on
-      --ubatch-size 512 --batch-size 512
+      --ubatch-size 8192 --batch-size 1024
       --sleep-idle-seconds 300
       --chat-template-kwargs '{"enable_thinking": false}'
     healthcheck:

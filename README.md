@@ -20,23 +20,42 @@ docker build -t local/llama.cpp:server-cuda-20260307 \
 ```
 
 
-# Running Qwen3-Coder-Next-MXFP4_MOE.gguf
+# Running llama-server with various models 
+
+In all cases, run the docker compose command, wait a bit, then browse to http://localhost:8080 
+
+
+Qwen3 Coder
 
 ```
-docker run --gpus all -p 8080:8080   -v /mnt/Extra/Models:/models ghcr.io/ggml-org/llama.cpp:server-cuda   -m /models/Qwen3-Coder-Next-MXFP4_MOE.gguf   --port 8080 --host 0.0.0.0   --temp 1.0 --top-p 0.95 --top-k 40   --n-gpu-layers -1   --ctx-size 32768   --flash-attn on   --no-warmup
+docker compose -f docker-compose.coder-next.yml up llama-server
 ```
-
-Wait a bit then  browse to http://localhost:8080 
-
 I got about 28 tokens per second
 
-# Running Qwen3.5-35B-A3B-MXFP4_MOE.gguf
+Qwen3.5 35B
 
 ```
-docker run --gpus all -p 8080:8080   -v /mnt/Extra/Models:/models local/llama.cpp:server-cuda   -m /models/Qwen3.5-35B-A3B-MXFP4_MOE.gguf --port 8080 --host 0.0.0.0 -c 32768 -ngl -1 -ctk q8_0 -ctv q8_0 -sm none -mg 0 -np 1 -fa on
+docker compose -f docker-compose.35B.yml up llama-server
 ```
 
 I got about 65 tokens per second
+
+Qwen3.5 27B IQ4
+
+```
+docker compose -f docker-compose.27B.IQ4.yml up llama-server
+```
+
+I got about 17 tokens per second
+
+Qwen3.5 27B Q3_K_M
+
+```
+docker compose -f docker-compose.27B.Q3.yml up llama-server
+```
+
+I got about 38 tokens per second
+
 
 ---
 
