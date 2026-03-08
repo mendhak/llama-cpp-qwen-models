@@ -57,7 +57,17 @@ docker compose -f docker-compose.27B.Q3.yml up llama-server
 I got about 38 tokens per second
 
 
+## Benchmarking with llama-bench
+
+```
+docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 4096,8192,16384 -ub 512,1024,2048,4096,8192 -t 8 -fa 1 -ctk q8_0,f16,bf16,q4_0 -ctv q8_0,f16,bf16,q4_0 -p 512 -n 128 --mmap 1,0 
+```
+
+
+
 ---
+
+## Opencode
 
 Docker Compose
 
@@ -72,8 +82,20 @@ docker compose run --rm opencode # run opencode in a TUI
 <details>
   
   <summary>Testing Notes</summary>
+
   
 ## Running llama-bench
+
+
+  For the 9B:
+
+```
+docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 4096,8192,16384 -ub 512,1024,2048,4096,8192 -t 8 -fa 1 -ctk q8_0,f16,bf16,q4_0 -ctv q8_0,f16,bf16,q4_0 -p 512 -n 128 --mmap 1,0 
+
+docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 8192,16384 -ub 1024 -t 8 -fa 1 -ctk f16 -ctv f16 -p 512,2048,8192 -n 128,512,1024 -d 0,4096,8192,16384
+```
+
+Other bench: 
 
   ```
   docker run  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full -m /models/Qwen3.5-35B-A3B-MXFP4_MOE.gguf --n-prompt 1024 --n-gen 0 --batch-size 1024,2048 --n-gpu-layers 99 --n-cpu-moe 38 --flash-attn 1
