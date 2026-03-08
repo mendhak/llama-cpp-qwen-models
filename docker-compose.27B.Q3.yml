@@ -1,0 +1,50 @@
+services:
+  llama-server:
+    image: local/llama.cpp:server-cuda-20260307
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - "8080:8080"
+    volumes:
+      - /mnt/Extra/Models:/models
+    command: >
+      -m /models/Qwen3.5-27B-Q3_K_M.gguf
+      --port 8080
+      --host 0.0.0.0
+      -c 4096
+      -ngl 99
+      -t 8
+      --no-mmap
+      --temp 0.7 --top_p 0.8 --top_k 20 --min_p 0.0 --presence_penalty 1.5 --repeat_penalty 1.0
+      -ctk q8_0 -ctv q8_0 
+      -np 1
+      -fa on
+      --ubatch-size 512 --batch-size 512
+      --sleep-idle-seconds 300
+      --chat-template-kwargs '{"enable_thinking": false}'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  opencode:
+    image: ghcr.io/anomalyco/opencode
+    stdin_open: true
+    tty: true
+    command: >
+      web
+      --hostname 0.0.0.0
+    ports:
+      - "0.0.0.0:4096:4096"
+    volumes:
+      - ${PWD}/opencode.json:/root/.config/opencode/opencode.json
+    depends_on:
+      llama-server:
+        condition: service_healthy
