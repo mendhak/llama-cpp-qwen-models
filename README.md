@@ -28,14 +28,14 @@ docker build -t local/llama.cpp:server-cuda-20260307 \
 In all cases, run the docker compose command, wait a bit, then browse to http://localhost:8080 
 
 
-Qwen3 Coder
+## Qwen3 Coder
 
 ```
 docker compose -f docker-compose.coder-next.yml up llama-server
 ```
 I got about 28 tokens per second
 
-Qwen3.5 35B
+## Qwen3.5 35B
 
 ```
 docker compose -f docker-compose.35B.yml up llama-server
@@ -43,7 +43,7 @@ docker compose -f docker-compose.35B.yml up llama-server
 
 I got about 65 tokens per second
 
-Qwen3.5 27B IQ4
+## Qwen3.5 27B IQ4
 
 ```
 docker compose -f docker-compose.27B.IQ4.yml up llama-server
@@ -51,7 +51,7 @@ docker compose -f docker-compose.27B.IQ4.yml up llama-server
 
 I got about 17 tokens per second
 
-Qwen3.5 27B Q3_K_M
+## Qwen3.5 27B Q3_K_M
 
 ```
 docker compose -f docker-compose.27B.Q3.yml up llama-server
@@ -59,7 +59,7 @@ docker compose -f docker-compose.27B.Q3.yml up llama-server
 
 I got about 38 tokens per second
 
-Qwen3.5 9B Q8_0
+## Qwen3.5 9B Q8_0
 
 ```
 docker compose -f docker-compose.9B.yml up llama-server
@@ -68,15 +68,8 @@ docker compose -f docker-compose.9B.yml up llama-server
 I get about 58 tokens per second
 
 
-## Benchmarking with llama-bench
 
-This is a good way of running multiple benchmarks in one go, it outputs the processing speed and token generation speed. 
-
-```
-docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 4096,8192,16384 -ub 512,1024,2048,4096,8192 -t 8 -fa 1 -ctk q8_0,f16,bf16,q4_0 -ctv q8_0,f16,bf16,q4_0 -p 512 -n 128 --mmap 1,0 
-```
-
-## Extras - opencode/openwebui
+# Extras - opencode/openwebui
 
 To include opencode, add the additional file:
 
@@ -88,6 +81,15 @@ To include openwebui/open-terminal, add the additional file:
     docker compose -f docker-compose.9B.yml -f compose-extras.openwebui.yml up
 
 Then browse to http://localhost:3000/
+
+
+# Benchmarking with llama-bench
+
+This is a good way of running multiple benchmarks in one go, it outputs the processing speed and token generation speed. 
+
+```
+docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 4096,8192,16384 -ub 512,1024,2048,4096,8192 -t 8 -fa 1 -ctk q8_0,f16,bf16,q4_0 -ctv q8_0,f16,bf16,q4_0 -p 512 -n 128 --mmap 1,0 
+```
 
 
 ---
