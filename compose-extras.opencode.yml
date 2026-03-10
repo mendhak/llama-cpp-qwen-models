@@ -1,0 +1,18 @@
+services:
+
+  opencode:
+    image: ghcr.io/anomalyco/opencode
+    container_name: opencode
+    stdin_open: true
+    tty: true
+    command: >
+      web
+      --hostname 0.0.0.0
+    ports:
+      - "0.0.0.0:4096:4096"
+    volumes:
+      - ${PWD}/opencode.json:/root/.config/opencode/opencode.json
+    depends_on:
+      llama-server:
+        condition: service_healthy
+

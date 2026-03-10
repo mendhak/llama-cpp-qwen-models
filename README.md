@@ -76,17 +76,18 @@ This is a good way of running multiple benchmarks in one go, it outputs the proc
 docker run --rm  --gpus all -v /mnt/Extra/Models:/models --entrypoint ./llama-bench local/llama.cpp:full20260307 -m /models/Qwen3.5-9B-Q8_0.gguf -ngl 99 -b 4096,8192,16384 -ub 512,1024,2048,4096,8192 -t 8 -fa 1 -ctk q8_0,f16,bf16,q4_0 -ctv q8_0,f16,bf16,q4_0 -p 512 -n 128 --mmap 1,0 
 ```
 
+## Extras - opencode/openwebui
 
+To include opencode, add the additional file:
 
----
+    docker compose -f docker-compose.9B.yml -f compose-extras.opencode.yml up
+    docker exec -it opencode opencode
 
-## Opencode
+To include openwebui/open-terminal, add the additional file:
 
-Docker Compose
+    docker compose -f docker-compose.9B.yml -f compose-extras.openwebui.yml up
 
-docker compose up # brings up llama and opencode
-
-docker compose run --rm opencode # run opencode in a TUI
+Then browse to http://localhost:3000/
 
 
 ---

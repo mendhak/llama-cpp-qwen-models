@@ -7,6 +7,9 @@ services:
       - "3000:8080"
     volumes:
       - open-webui:/app/backend/data
+    depends_on:
+      llama-server:
+        condition: service_healthy
 
   open-terminal:
     image: ghcr.io/open-webui/open-terminal
@@ -17,27 +20,9 @@ services:
       - open-terminal:/home/user
     environment:
       - OPEN_TERMINAL_API_KEY=your-secret-key
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-          cpus: "2.0"
-      
-
-  # opencode:
-  #   image: ghcr.io/anomalyco/opencode
-  #   stdin_open: true
-  #   tty: true
-  #   command: >
-  #     web
-  #     --hostname 0.0.0.0
-  #   ports:
-  #     - "0.0.0.0:4096:4096"
-  #   volumes:
-  #     - ${PWD}/opencode.json:/root/.config/opencode/opencode.json
-  #   depends_on:
-  #     llama-server:
-  #       condition: service_healthy
+    depends_on:
+      llama-server:
+        condition: service_healthy
 
 
 volumes:

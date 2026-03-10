@@ -10,7 +10,7 @@
       },
       "models": {
         "my-model": {
-          "name": "Qwen3.5-35B-A3B-MXFP4_MOE.gguf",
+          "name": "Qwen3.5",
           "tools": true
         }
       }
