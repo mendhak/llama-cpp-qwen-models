@@ -123,6 +123,16 @@ The way I do it is to add a function in my `~/.bashrc` that starts the opencode 
 opencode() {
 docker run -it --rm --network container:llama-server -v "/home/mendhak/Projects/llama-cpp-qwen-models/opencode.json:/root/.config/opencode/opencode.json" -v "${PWD}:/workspace" -w /workspace ghcr.io/anomalyco/opencode --agent plan
 }
+
+# or
+
+opencode() {
+  export OPENCODE_DIR="/home/mendhak/Projects/local-llm-workspace"
+  export WORKSPACE_DIR="$(pwd)"
+  docker compose -f "${OPENCODE_DIR}/compose-extras.opencode.yml" up -d opencode
+  docker attach opencode
+}
+
 ```
 
 I can then just run `opencode` in any directory. It will start the container, connect to the llama server, and let me use opencode in that directory.

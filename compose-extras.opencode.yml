@@ -3,14 +3,19 @@ services:
   opencode:
     image: ghcr.io/anomalyco/opencode
     container_name: opencode
-    stdin_open: true
-    tty: true
-    restart: unless-stopped  # Restart even if you quit opencode
+    stdin_open: true 
+    tty: true 
+    restart: no
+    command: >
+      --agent plan
     environment:
       - OPENCODE_EXPERIMENTAL_DISABLE_COPY_ON_SELECT=true  # Use shift+drag to highlight, ctrl+shift+c to copy, ctrl+shift+v to paste. 
     volumes:
-      - ${PWD}/opencode.json:/root/.config/opencode/opencode.json
-      - ${PWD}:/workspace
+      - ${OPENCODE_DIR}/opencode.json:/root/.config/opencode/opencode.json
+      - opencode-data:/root/.local/
+      - ${WORKSPACE_DIR}:/workspace
     working_dir: /workspace
 
+volumes:
+  opencode-data:
 
