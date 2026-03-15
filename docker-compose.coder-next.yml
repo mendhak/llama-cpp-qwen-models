@@ -1,35 +1,22 @@
 services:
   llama-server:
-    image: local/llama.cpp:server-cuda-20260307
-    container_name: llama-server
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    ports:
-      - "8080:8080"
-    volumes:
-      - /mnt/Extra/Models:/models
+    extends:
+      file: compose-common.yml
+      service: llama-server
     environment:
       - GGML_CUDA_GRAPH_OPT=1
     command: >
-      -m /models/Qwen3-Coder-Next-MXFP4_MOE.gguf
+      -m /models/Qwen3-Coder-Next-UD-IQ4_XS.gguf
       --port 8080
       --host 0.0.0.0
-      --temp 1.0
-      --top-p 0.95
-      --top-k 40
-      --n-gpu-layers -1
-      --ctx-size 32768
+      --threads 8
+      --threads-batch 16
+      --no-mmap
+      --temp 1.0 --top-p 0.95 --top-k 40 --min_p 0.01 --repeat_penalty 1.0
+      --fit on
+      --fit-target 512
+      --fit-ctx 32768
       --flash-attn on
-      --no-warmup
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-
+      --cache-type-k q4_0 --cache-type-v q4_0
+      --parallel 1
+      --sleep-idle-seconds 300      
