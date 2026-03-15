@@ -121,7 +121,7 @@ The way I do it is to add a function in my `~/.bashrc` that starts the opencode 
 
 ```
 opencode() {
-docker run -it --rm --network container:llama-server -v "/home/mendhak/Projects/llama-cpp-qwen-models/opencode.json:/root/.config/opencode/opencode.json" -v "${PWD}:/workspace" -w /workspace ghcr.io/anomalyco/opencode
+docker run -it --rm --network container:llama-server -v "/home/mendhak/Projects/llama-cpp-qwen-models/opencode.json:/root/.config/opencode/opencode.json" -v "${PWD}:/workspace" -w /workspace ghcr.io/anomalyco/opencode --agent plan
 }
 ```
 

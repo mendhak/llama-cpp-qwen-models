@@ -15,8 +15,8 @@ services:
       --temp 1.0 --top-p 0.95 --top-k 40 --min_p 0.01 --repeat_penalty 1.0
       --fit on
       --fit-target 512
-      --fit-ctx 32768
-      --flash-attn on
+      --fit-ctx 65536
       --cache-type-k q4_0 --cache-type-v q4_0
       --parallel 1
+      --flash-attn on
       --sleep-idle-seconds 300      
