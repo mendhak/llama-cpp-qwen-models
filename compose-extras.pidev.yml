@@ -5,10 +5,15 @@ services:
     build:
       context: .
       dockerfile_inline: |
-        FROM node:24-slim
-        RUN apt-get update && apt-get install -y curl
+        FROM ubuntu:24.04
+        RUN apt-get update && apt-get install -y curl jq
+        RUN curl -LsSf https://astral.sh/uv/install.sh | sh 
+        RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash
+        RUN apt-get install -y nodejs
         RUN npm install -g @mariozechner/pi-coding-agent
+        RUN pi --version
         RUN pi install npm:pi-safeguard
+        RUN pi install npm:@benvargas/pi-exa-mcp
         CMD ["/bin/bash"]
     container_name: pidev
     stdin_open: true 
