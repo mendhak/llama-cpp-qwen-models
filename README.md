@@ -61,9 +61,9 @@ I got about 65 tokens per second.
 
 To make use of the MCP servers, add these URLs in llama chat's MCP settings. Yes, it's `localhost`. 
 
-* http://localhost:8096/server/time/mcp
-* http://localhost:8096/server/fetch/mcp
-* http://localhost:8096/server/ddg-search/mcp
+* http://localhost:8096/servers/time/mcp
+* http://localhost:8096/servers/fetch/mcp
+* http://localhost:8096/servers/ddg-search/mcp
 
 ## Qwen3.5 27B, for coding
 
