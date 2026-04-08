@@ -18,7 +18,7 @@
                         "thinkingFormat": "qwen-chat-template"
                     },
                     "contextWindow": 65536,
-                    "maxTokens": 32768,
+                    "maxTokens": 65536,
                     "cost": {
                         "input": 0,
                         "output": 0,
@@ -35,7 +35,7 @@
                         "image"
                     ],
                     "contextWindow": 65536,
-                    "maxTokens": 32768,
+                    "maxTokens": 65536,
                     "cost": {
                         "input": 0,
                         "output": 0,
