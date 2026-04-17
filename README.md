@@ -70,7 +70,7 @@ To make use of the MCP servers, add these URLs in llama chat's MCP settings. Yes
 The same model but with slightly different parameters. To use it: 
 
 ```
-docker compose -f coding/qwen35B.yml
+docker compose -f coding/qwen35B.yml up
 ```
 
 
