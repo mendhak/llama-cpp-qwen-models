@@ -48,7 +48,7 @@ In all cases, run the docker compose command, wait a bit, then browse to http://
 
 
 
-## Qwen3.6 35B, for general chat
+## Qwen3.6 35B, for chat
 
 This is a MOE - mixture of experts. It doesn't load the whole model into GPU, just parts as needed. It does work quite fast, good for general purpose chat. It can be used with the MCP for some web search capabilities.
 
@@ -64,33 +64,23 @@ To make use of the MCP servers, add these URLs in llama chat's MCP settings. Yes
 * http://localhost:8096/servers/fetch/mcp
 * http://localhost:8096/servers/ddg-search/mcp
 
-## Qwen3.5 27B, for coding
+## Qwen3.6 35B, for coding
 
-A few variants here, the IQ4 is the most recent, and the Q3 is a bit faster. Both are good for coding. 
 
- IQ4 with opencode:
-
-```
-docker compose -f coding/qwen27B.IQ4.yml up
-```
-
-I got about 17 tokens per second
-
-IQ3 with opencode:
+The same model but with slightly different parameters. To use it: 
 
 ```
-docker compose -f coding/qwen27B.IQ3.yml up
+docker compose -f coding/qwen35B.yml
 ```
 
-I got about 38 tokens per second
 
 
-## Qwen3 Coder, for coding
+## Qwen3 Coder Next, for coding
 
 ```
 docker compose -f coding/qwen.codernext.yml up 
 ```
-I got about 28 tokens per second
+
 
 ## Qwen3.5 9B Q8_0
 
@@ -98,7 +88,6 @@ I got about 28 tokens per second
 docker compose -f lightweight/qwen9B.yml up llama-server
 ```
 
-I get about 58 tokens per second
 
 ## Qwen3.5 4B, lightweight CPU option
 
@@ -108,7 +97,6 @@ A small, fast model that runs on CPU without requiring GPU. Good for simple task
 docker compose -f lightweight/qwen4B.yml up
 ```
 
-I get about 12 tokens per second
 
 
 
