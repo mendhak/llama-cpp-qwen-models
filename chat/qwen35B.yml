@@ -3,8 +3,9 @@ services:
     extends:
       file: ../compose-common.yml
       service: llama-server
+    # Nice models: Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf, Qwen3.6-35B-A3B-MXFP4_MOE.gguf
     command: >
-      --model /models/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf
+      --model /models/Qwen3.6-35B-A3B-MXFP4_MOE.gguf
       --port 8080
       --host 0.0.0.0
       --threads 8
@@ -13,8 +14,8 @@ services:
       --fit-target 512
       --fit-ctx 65536
       --batch-size 2048 --ubatch-size 1024
-      --cache-type-k q8_0 --cache-type-v q8_0
-      --spec-type ngram-mod --spec-ngram-size-n 24 --draft-min 48 --draft-max 64
+      --cache-type-k q4_0 --cache-type-v q4_0
+      --spec-type ngram-mod --spec-ngram-size-n 12 --draft-min 48 --draft-max 64
       --parallel 1
       --flash-attn on
       --sleep-idle-seconds 300
