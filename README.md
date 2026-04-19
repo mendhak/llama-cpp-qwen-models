@@ -15,17 +15,23 @@ I also want to be able to run local models safely without compromising the secur
 
 These are various models I downloaded and tried and found useful. They can be interchanged in the docker compose files. 
 
+## chat
 
-| Model | Source | Used In |
-|-------|--------|---------|
-| **Qwen3.6 35B** - `Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf` | [unsloth/Qwen3.6-35B-A3B-GGUF](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF) | `chat/qwen35B.yml` |
-| **Qwen3.6 35B** - `Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf` | [unsloth/Qwen3.6-35B-A3B-GGUF](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF) | `coding/qwen35B.yml` |
-| **Qwen3.5 27B** - `Qwen3.5-27B-IQ4_XS.gguf` | [unsloth/Qwen3.5-27B-GGUF](https://huggingface.co/unsloth/Qwen3.5-27B-GGUF) | `coding/qwen27B.IQ4.yml` |
-| **Qwen3.5 27B** - `Qwen3.5-27B-Q3_K_M.gguf` | [Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF](https://huggingface.co/Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-GGUF) | `coding/qwen27B.IQ3.yml` |
-| **Qwen3 Coder Next** - `Qwen3-Coder-Next-UD-Q4_K_M.gguf` | [unsloth/Qwen3-Coder-Next-GGUF](https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF) | `coding/qwen.codernext.yml` |
-| **Qwen3.5 9B** - `Qwen3.5-9B-Q8_0.gguf` | [unsloth/Qwen3.5-9B-GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) | `lightweight/qwen9B.yml` |
-| **Qwen3.5 4B** - `Qwen3.5-4B-Q4_K_M.gguf` | [unsloth/Qwen3.5-4B-GGUF](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) | `lightweight/qwen4B.yml` |
-| **Gemma 4 26B** - `gemma-4-26B-A4B-it-UD-IQ4_NL.gguf` | [google/gemma-4-it](https://huggingface.co/google/gemma-4-it) | `chat/gemma4.yml` |
+- **Qwen3.6 35B** - [unsloth/Qwen3.5-35B-A3B-GGUF](https://huggingface.co/unsloth/Qwen3.5-35B-A3B-GGUF/tree/main) `Qwen3.6-35B-A3B-MXFP4_MOE.gguf`, `Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf` 
+- **Gemma 4 26B** - [unsloth/gemma-4-26B-A4B-it-GGUF](https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF) - `gemma-4-26B-A4B-it-UD-IQ4_NL.gguf`, `gemma-4-26B-A4B-it-MXFP4_MOE.gguf`
+- **Gemma 4 31B** - [unsloth/gemma-4-31B-it-GGUF](https://huggingface.co/unsloth/gemma-4-31B-it-GGUF/tree/main) - `gemma-4-31B-it-Q4_K_M.gguf`
+
+## coding
+
+- **Qwen3.6 35B** - [unsloth/Qwen3.6-35B-A3B-GGUF](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF) `Qwen3.6-35B-A3B-MXFP4_MOE.gguf`, `Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf` 
+- **Qwen3.5 27B** - [unsloth/Qwen3.5-27B-GGUF](https://huggingface.co/unsloth/Qwen3.5-27B-GGUF) - `Qwen3.5-27B-IQ4_XS.gguf`, `Qwen3.5-27B-Q3_K_M.gguf`
+- **Qwen3 Coder Next** - [unsloth/Qwen3-Coder-Next-GGUF](https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF) - `Qwen3-Coder-Next-MXFP4_MOE.gguf`
+
+## lightweight
+
+- **Qwen3.5 9B** - [unsloth/Qwen3.5-9B-GGUF](https://huggingface.co/unsloth/Qwen3.5-9B-GGUF) - `Qwen3.5-9B-Q8_0.gguf`
+- **Qwen3.5 4B** - [unsloth/Qwen3.5-4B-GGUF](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) - `Qwen3.5-4B-Q4_K_M.gguf`
+- **Gemma 4 E4B* - [unsloth/gemma-4-E4B-it-GGUF](https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF) - `gemma-4-E4B-it-UD-Q8_K_XL.gguf`
 
 # Build llama.cpp for RTX 5080 and Cuda 13.1
 
